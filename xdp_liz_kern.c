@@ -3,14 +3,14 @@
 
 #define IP_ADDRESS(x) (unsigned int)(172 + (17 << 8) + (0 << 16) + (x << 24))
 
-struct bpf_map_def SEC("maps") my_map = {
-    .type = BPF_MAP_TYPE_PERF_EVENT_ARRAY,
-    .key_size = sizeof(int),
-    .value_size = sizeof(__u32),
-    .max_entries = 128,
-};
+struct my_map {
+    __uint(type, BPF_MAP_TYPE_PERF_EVENT_ARRAY);
+    __uint(key_size, sizeof(int));
+    __uint(value_size, sizeof(__u32));
+    __uint(max_entries, 128);
+} my_map SEC(".maps");
 
-SEC("xdp_liz")
+SEC("xdp")
 int xdp_liz_hello(struct xdp_md *ctx)
 {
     void *data = (void *)(long)ctx->data;

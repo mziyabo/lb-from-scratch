@@ -23,6 +23,7 @@ $(USER_TARGET): %: %.c
 
 $(BPF_OBJ): %.o: %.c
 	clang -S \
+		-g \
 	    -target bpf \
 	    -D __BPF_TRACING__ \
 	    -Ilibbpf/src\

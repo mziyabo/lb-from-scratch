@@ -7,7 +7,7 @@
 #define CLIENT 4
 #define LB 5
 
-SEC("xdp_lb")
+SEC("xdp")
 int xdp_load_balancer(struct xdp_md *ctx)
 {
     void *data = (void *)(long)ctx->data;

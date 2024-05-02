@@ -6,7 +6,7 @@
 #include <bpf_helpers.h>
 #include <bpf_endian.h>
 
-SEC("xdp/bye")
+SEC("xdp")
 int goodbye_ping(struct xdp_md *ctx)
 {
     void *data = (void *)(long)ctx->data;
